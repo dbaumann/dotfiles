@@ -1,0 +1,6 @@
+alias merge="open /Applications/Xcode.app/Contents/Applications/FileMerge.app/"
+
+alias gitlist="git diff-tree --no-commit-id --name-only -r"
+
+alias jpp="python -m json.tool"
+alias xpp="xmllint --format -"
