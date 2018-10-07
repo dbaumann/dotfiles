@@ -16,25 +16,12 @@ PS1='[\[\033[01;36m\]\W\[\033[00m\]\[\033[01;31m\]$(parse_git_branch)\[\033[00m\
 #   source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
 # fi
 
-# LOCAL SERVICE CONFIG
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
-export MONGOC_VERBOSE=1 # for mongohub debugging; run /Applications/MongoHub.app/Contents/MacOS/MongoHub and observe output
-export CDPATH=.:$HOME/TWC/fu
-# /usr/local/opt/memcached/bin/memcached # freze?
-
-# ALIASES
-source ~/bin/aliases
-# source ~/TWC/fu/dev-environment/ipvs_functions.sh
-
 # SYSTEM PATH
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
-# TWC PATH
-PATH=$PATH:~/bin:$HOME/TWC/fu/openstack-client/bin
-PATH=$PATH:~/bin:$HOME/TWC/fu/dev-environment/bin
-PATH=$PATH:~/bin:$HOME/TWC/fu/dev-environment/bin/mongo
-
 # COMPLETION
+export CDPATH=.:$HOME/github
+
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
@@ -43,9 +30,15 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
+complete -A hostname -o default curl dig host netcat nc ping telnet ssh
+
 # MISC
 # # because mac os won't do this otherwise
 # source ~/.bashrc
 
 # http://www.elliottsprehn.com/blog/2010/09/18/delete-key-issues-with-h-ctrl-h-and-ssh-on-os-x/
 #stty erase ^H
+
+function ff() {
+  find . -regex ".*$1*."
+}
